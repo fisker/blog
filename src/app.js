@@ -99,7 +99,7 @@ const github = (function() {
     const script = document.createElement('script')
     params = assign({}, params, {
       callback: callbackName,
-      access_token: config.access_token
+      access_token: ACCESS_TOKEN
     })
 
     let url = [GITHUB_API]
