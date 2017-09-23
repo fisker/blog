@@ -9,6 +9,7 @@
     </li>
   <% }) %>
 </ul>
+<% if (meta.Link) { %>
 <hr>
 <nav>
   <%
@@ -18,3 +19,4 @@
   <a href="<%- hashLink({page: pageIndex}) %>" title="<%- link[1].rel %>"><%- link[1].rel %></a>
   <% }) %>
 </nav>
+<% } %>
