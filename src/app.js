@@ -90,7 +90,8 @@ function hashLink(data) {
 
 const github = (function() {
   const GITHUB_API = 'https://api.github.com'
-  const ACCESS_TOKEN = config.access_token
+  // const ACCESS_TOKEN = config.access_token
+  const ACCESS_TOKEN = atob('NWE0MWU3NWM4YjIyYzcwZDcwYjA4YWUyMTVjZDc3NDc1OGUzYjhiMCA')
   const head = document.head || document.getElementsByTagName('head')[0]
 
   function request(path, params) {
