@@ -1,10 +1,13 @@
 
 <article>
+  <h1><%- data.title %></h1>
   <header>
-    <h2><%- data.title %></h2>
     <div><%- data.created_at %></div>
   </header>
-  <div>
-    <%= marked(data.body) %>
-  </div>
+  <div class="markdown-body"><%= markdown(data.body) %></div>
+  <footer>
+    <% data.labels.forEach(function(label) {%>
+      <a href="<%= hashLink({label: label.name}) %>" style="background:#<%= label.color%>"><%- label.name%></a>
+    <% })%>
+  </footer>
 </article>

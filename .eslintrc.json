@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "parser": "esprima",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "module": true
+  },
+  // see https://github.com/prettier/eslint-config-prettier
+  "extends": ["prettier"]
+}

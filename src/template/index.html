@@ -1,16 +1,16 @@
 
-<h1>fisker's blog</h1>
+<h1><%- config.name %></h1>
+<hr>
 <ul>
   <% data.forEach(function(article) { %>
     <li>
-      #<%= article.number %> :
-      <a href="<%- hashLink({id: article.number}) %>"><%- article.title %></a>
       <time datetime="<%- article.created_at %>"><%- article.created_at %>
+      <a href="<%- hashLink({id: article.number}) %>"><%- article.title %></a>
     </li>
   <% }) %>
-  </ul>
-  <hr>
-  <nav>
+</ul>
+<hr>
+<nav>
   <%
     meta.Link.forEach(function(link) {
     var pageIndex = link[0].match(/[?&]page=(\d+)/)[1]
