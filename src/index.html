@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fisker's blog</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="js-container"></div>
+    <script type="text/x-template" id="js-article-list">
+    </script>
+
+  <script src="https://unpkg.com/es6-promise@4.1.1/dist/es6-promise.auto.min.js"></script>
+  <script src="https://unpkg.com/marked@0.3.6/marked.min.js"></script>
+  <script src="https://unpkg.com/localforage@1.5.0/dist/localforage.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+  <script src="index.js"></script>
+  <script>
+  // const config = {
+  //   API: 'https://api.github.com/',
+  //   OWNER: 'fisker',
+  //   REPO: 'fisker.github.io',
+  //   ACCESS_TOKEN: 'MTIzOWE2ZDQzYjcxMjRmYWExY2Q0MDlhMTYzN2FjYWZiYzQ3MzdjYQ=='
+  // }
+  const CONFIG = {
+    api: 'https://api.github.com',
+    owner: 'lifesinger',
+    repo: 'lifesinger.github.com',
+    repoId: '1207821',
+    pageSize: 20,
+    access_token: atob('MTIzOWE2ZDQzYjcxMjRmYWExY2Q0MDlhMTYzN2FjYWZiYzQ3MzdjYQ==')
+  }
+
+  function run() {
+    container.innerHTML = 'loading...'
+    var query = parseHash(window.location.hash)
+
+    if (query.id) {
+      getArticle(+ query.id).then(function(data) {
+        showArticle(data)
+      }).catch(function(err) {
+        container.innerHTML = 'error occured <button onclick="location.reload()">retry</button>'
+      })
+    } else {
+      var page = parseInt(query.page, 10) || 1
+      container.innerHTML = 'loading...'
+      getIndex(page).then(listArticles).catch(function(err) {
+        container.innerHTML = 'error occured <button onclick="location.reload()">retry</button>'
+      })
+    }
+  }
+
+  run()
+  window.addEventListener('hashchange', run, false)
+  </script>
+</body>
+</html>

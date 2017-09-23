@@ -1,0 +1,32 @@
+{
+  "name": "fisker.github.io",
+  "version": "1.0.0",
+  "description": "fisker's blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fisker/fisker.github.io.git"
+  },
+  "keywords": [
+    "fisker",
+    "blog"
+  ],
+  "author": "fisker Cheung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fisker/fisker.github.io/issues"
+  },
+  "homepage": "https://github.com/fisker/fisker.github.io#readme",
+  "dependencies": {
+    "es6-promise": "^4.1.1",
+    "localforage": "^1.5.0",
+    "lodash.template": "^4.4.0",
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
