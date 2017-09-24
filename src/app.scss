@@ -1,12 +1,42 @@
 body {
   word-break: break-all;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
+  // color: #333;
+  // font-size: 14px;
 }
 
 img {
   max-width: 100%;
 }
+
+pre,
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+
+// .list {
+//   list-style: none;
+//   padding-left: 0;
+//   border: 1px solid #e1e4e8;
+
+//   &__item {
+//     padding: 1em;
+
+//     & + & {
+//       border-top: 1px solid #e1e4e8;
+//     }
+//   }
+
+//   &__title {
+//     display: block;
+//   }
+
+//   &__meta {
+//     color: #586069;
+//     font-size: 12px;
+//     margin-top: 4px;
+//   }
+
+//   &__time {
+//   }
+// }

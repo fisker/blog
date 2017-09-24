@@ -1,25 +1,39 @@
-// module.exports = {
-//   name: 'fisker\'s blog',
-//   owner: 'lifesinger',
-//   repo: 'lifesinger.github.com',
-//   repoId: '1207821',
-//   pageSize: 10,
-//   access_token: '1239a6d43b7124faa1cd409a1637acafbc4737ca'
-// }
+// defalt index cache time in seconds
+const DEFAULT_INDEX_CACHE_TIME = 5000
 
-// module.exports = {
-//   name: 'fisker\'s blog',
-//   owner: 'confidence68',
-//   repo: 'blog',
-//   // repoId: '1207821',
-//   pageSize: 30,
-//   access_token: '1239a6d43b7124faa1cd409a1637acafbc4737ca'
-// }
-module.exports = {
+// defalt article cache time in seconds
+const DEFAULT_ARTICLE_CACHE_TIME = 1 * 60 * 1000
+
+const config = {
+  // github api base
+  api: 'https://api.github.com',
+  // you should split access_token in to pieces
+  // otherwise access_token will expired after you commit to github
+  accessTokens: [
+    ['5', 'a41e75c8b2', '2c70d70b08ae21', '5cd774758e3b8b0']
+  ],
+  // cache
+  // set false to disable cache
+  cache: {
+    index: DEFAULT_INDEX_CACHE_TIME,
+    // article cache time
+    article: DEFAULT_ARTICLE_CACHE_TIME
+  },
+
   name: 'fisker\'s blog',
   owner: 'fisker',
   repo: 'fisker.github.io',
-  // repoId: '1207821',
+  // repoId: '',
   pageSize: 30,
-  access_token: 'c' + 'c17e5f7a2854042327ad06b2ecc16b8a85aa267'
+  paths: {
+    'require-js': 'https://cdn.bootcss.com/require.js/2.3.5/require.min.js',
+    localforage: 'https://cdn.bootcss.com/localforage/1.5.0/localforage.min.js',
+    'es6-promise': 'https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
+    'highlight-js': 'https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
+    marked: 'https://cdn.bootcss.com/marked/0.3.6/marked.min.js',
+    'primer-markdown': 'https://unpkg.com/primer-markdown@3.6.0/build/build.css',
+    'highlight-js-css': 'https://unpkg.com/highlight.js@9.12.0/styles/darkula.css',
+  }
 }
+
+module.exports = config
