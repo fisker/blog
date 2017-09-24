@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-template": "sh ./build/build-template.sh",
     "dev": "npm run build-template && gulp",
-    "build": "set NODE_ENV=production && npm run build-template && gulp build",
+    "build": "set NODE_ENV=production&& npm run build-template && gulp build",
     "publish": "sh ./build/publish.sh"
   },
   "repository": {
