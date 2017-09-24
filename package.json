@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-template": "sh ./build/build-template.sh",
     "dev": "npm run build-template && gulp",
-    "build": "set NODE_ENV=production && npm run build-template && gulp build"
+    "build": "set NODE_ENV=production && npm run build-template && gulp build",
+    "publish": "sh ./build/publish.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fisker/fisker.github.io.git"
+    "url": "git+https://github.com/fisker/blog.git"
   },
   "keywords": [
     "fisker",
@@ -20,14 +21,13 @@
   "author": "fisker Cheung",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fisker/fisker.github.io/issues"
+    "url": "https://github.com/fisker/blog/issues"
   },
-  "homepage": "https://github.com/fisker/fisker.github.io#readme",
+  "homepage": "https://github.com/fisker/blog#readme",
   "dependencies": {
-    "lodash-cli": "^4.17.4",
-    "primer-markdown": "^3.6.0"
   },
   "devDependencies": {
+    "lodash-cli": "^4.17.4",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-minify": "^0.2.0",

@@ -3715,16 +3715,6 @@ pretty-hrtime@^1.0.0:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/pretty-hrtime/download/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
 
-primer-markdown@^3.6.0:
-  version "3.6.0"
-  resolved "http://registry.npm.taobao.org/primer-markdown/download/primer-markdown-3.6.0.tgz#30f3b50265672fbabc977d9b07348aec702ac160"
-  dependencies:
-    primer-support "4.3.0"
-
-primer-support@4.3.0:
-  version "4.3.0"
-  resolved "http://registry.npm.taobao.org/primer-support/download/primer-support-4.3.0.tgz#c470fef8c0bff2ec8a771a0749783c2b388118fe"
-
 private@^0.1.6, private@^0.1.7:
   version "0.1.7"
   resolved "http://registry.npm.taobao.org/private/download/private-0.1.7.tgz#68ce5e8a1ef0a23bb570cc28537b5332aba63ef1"
