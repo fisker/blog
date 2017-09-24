@@ -22,7 +22,7 @@ const config = {
 
   name: 'fisker\'s blog',
   owner: 'fisker',
-  repo: 'fisker.github.io',
+  repo: 'blog',
   // repoId: '',
   pageSize: 30,
   paths: {
