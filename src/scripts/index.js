@@ -1,6 +1,6 @@
 const index = (function() {
   const INDEX_STORAGE_KEY = 'index'
-  const expireTime = (config.cache && config.cache.index) || 0
+  const expireTime = ((config.cache && config.cache.index) || 0) * 1000
   const render = templates.index
 
   function cached(page) {
@@ -20,7 +20,8 @@ const index = (function() {
   }
 
   function fetch(page) {
-    return github.get('', {
+    return github
+      .get('', {
         page: page,
         per_page: config.pageSize
       })

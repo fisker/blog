@@ -1,7 +1,6 @@
-
 const article = (function() {
   const ARTICLES_STORAGE_KEY = 'articles'
-  const expireTime = (config.cache && config.cache.index) || 0
+  const expireTime = ((config.cache && config.cache.article) || 0) * 1000
   const render = templates.article
 
   function cached(id) {
@@ -35,7 +34,7 @@ const article = (function() {
       .then(function(cached) {
         cached = cached || {}
 
-        if(data.data.forEach) {
+        if (data.data.forEach) {
           data.data.forEach(function(item) {
             cached[item.number] = {
               data: item,

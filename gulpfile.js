@@ -20,7 +20,7 @@ const banner = {
     ' * <%= pkg.name %> - <%= pkg.description %>',
     ' * @version v<%= pkg.version %>',
     ' * @license <%= pkg.license %>',
-    ' * @copyright <%= pkg.author.name || pkg.name %>',
+    ' * @copyright <%= pkg.author.name || pkg.author %>',
     ' * @link <%= pkg.homepage %>',
     ' */',
     ''
@@ -28,7 +28,7 @@ const banner = {
   min:
     '/* <%= pkg.name %> v<%= pkg.version %> | (c) ' +
     new Date().getFullYear() +
-    ' <%= pkg.author.name || pkg.name %> | <%= pkg.license %> License */' +
+    ' <%= pkg.author.name || pkg.author %> | <%= pkg.license %> License */' +
     '\n'
 }
 
