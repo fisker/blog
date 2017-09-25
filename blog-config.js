@@ -9,6 +9,7 @@ const config = {
   api: 'https://api.github.com',
   // you should split access_token in to pieces
   // otherwise access_token will expired after you commit to github
+  // how to get access_token http://www.fiskercheung.com/#/id/6
   accessTokens: [
     ['5', 'a41e75c8b2', '2c70d70b08ae21', '5cd774758e3b8b0']
   ],
