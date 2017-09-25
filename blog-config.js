@@ -25,12 +25,16 @@ const config = {
   repo: 'blog',
   // repoId: '',
   pageSize: 30,
+  require: {
+    paths: {
+      marked: 'https://cdn.bootcss.com/marked/0.3.6/marked.min.js',
+      'highlight-js': 'https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
+      'es6-promise': 'https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
+      localforage: 'https://cdn.bootcss.com/localforage/1.5.0/localforage.min.js',
+    }
+  },
   paths: {
     'require-js': 'https://cdn.bootcss.com/require.js/2.3.5/require.min.js',
-    localforage: 'https://cdn.bootcss.com/localforage/1.5.0/localforage.min.js',
-    'es6-promise': 'https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
-    'highlight-js': 'https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
-    marked: 'https://cdn.bootcss.com/marked/0.3.6/marked.min.js',
     'primer-markdown': 'https://unpkg.com/primer-markdown@3.6.0/build/build.css',
     'highlight-js-css': 'https://cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-light.min.css',
   }

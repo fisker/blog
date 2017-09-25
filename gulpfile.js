@@ -54,6 +54,23 @@ function templateData() {
     files[path] = str
   })
 
+  if (!config.$js) {
+    const jsConfig = Object.assign({}, config)
+
+    // fix config.require
+    const paths = jsConfig.require.paths
+    for (let key in paths) {
+      let path = paths[key]
+      if (path.slice(-3) === '.js') {
+        paths[key] = path.slice(0, -3)
+      }
+    }
+
+    delete jsConfig.paths
+
+    config.$js = jsConfig
+  }
+
   return {
     files: files,
     config: config,

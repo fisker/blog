@@ -1,17 +1,10 @@
 
 ;(function() {
   const global = Function('return this')()
-  const config = <%= JSON.stringify(config)%>
+  const config = <%= JSON.stringify(config.$js, null, 2)%>
   const require = global.require
 
-  require.config({
-    paths: {
-      'localforage': config.paths['localforage'].slice(0, -3),
-      'es6-promise': config.paths['es6-promise'].slice(0, -3),
-      'highlight-js': config.paths['highlight-js'].slice(0, -3),
-      'marked': config.paths['marked'].slice(0, -3),
-    }
-  })
+  require.config(config.require)
 
   let Promise = global.Promise
   ;(function(callback) {
