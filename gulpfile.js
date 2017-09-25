@@ -150,7 +150,12 @@ gulp.task('build:js', function() {
       .pipe(template(templateData()))
       .pipe(
         babel({
-          presets: ['env', 'minify']
+          presets: ['env']
+        }).on('error', console.log)
+      )
+      .pipe(
+        babel({
+          presets: ['minify']
         }).on('error', console.log)
       )
       .pipe(
