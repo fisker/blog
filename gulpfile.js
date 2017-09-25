@@ -20,7 +20,7 @@ const banner = {
     ' * <%= pkg.name %> - <%= pkg.description %>',
     ' * @version v<%= pkg.version %>',
     ' * @license <%= pkg.license %>',
-    ' * @copyright <%= pkg.author.name %>',
+    ' * @copyright <%= pkg.author.name || pkg.name %>',
     ' * @link <%= pkg.homepage %>',
     ' */',
     ''
@@ -28,7 +28,7 @@ const banner = {
   min:
     '/* <%= pkg.name %> v<%= pkg.version %> | (c) ' +
     new Date().getFullYear() +
-    ' <%= pkg.author.name %> | <%= pkg.license %> License */' +
+    ' <%= pkg.author.name || pkg.name %> | <%= pkg.license %> License */' +
     '\n'
 }
 
@@ -109,8 +109,8 @@ gulp.task('dev:css', function() {
         addComment: true
       })
     )
-    .pipe(gulp.dest(DIST))
     .pipe(header(banner.full, {pkg: pkg}))
+    .pipe(gulp.dest(DIST))
     .pipe(size({title: 'app.scss'}))
     .pipe(browserSync.stream())
 })
@@ -134,8 +134,8 @@ gulp.task('build:css', function() {
         addComment: false
       })
     )
+    .pipe(header(banner.min, {pkg: pkg}))
     .pipe(gulp.dest(DIST))
-    .pipe(header(banner.full, {pkg: pkg}))
     .pipe(size({title: 'app.scss'}))
 })
 
@@ -154,8 +154,8 @@ gulp.task('dev:js', function() {
         addComment: true
       })
     )
-    .pipe(gulp.dest(DIST))
     .pipe(header(banner.full, {pkg: pkg}))
+    .pipe(gulp.dest(DIST))
     .pipe(size({title: 'app.js'}))
     .pipe(browserSync.stream())
 })
