@@ -62,9 +62,9 @@
     __e( _.hash.build({id: article.number}) ) +
     '">' +
     __e( article.title ) +
-    '</a><div class="list__meta">\n        # ' +
+    '</a><div class="list__meta">\n        #' +
     __e( article.number ) +
-    '\n        posted\n        <time class="list__time" datetime="' +
+    '\n        posted at\n        <time class="list__time" datetime="' +
     __e( article.created_at ) +
     '">' +
     __e( article.created_at ) +

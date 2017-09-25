@@ -32,7 +32,7 @@ const config = {
     'highlight-js': 'https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
     marked: 'https://cdn.bootcss.com/marked/0.3.6/marked.min.js',
     'primer-markdown': 'https://unpkg.com/primer-markdown@3.6.0/build/build.css',
-    'highlight-js-css': 'https://unpkg.com/highlight.js@9.12.0/styles/darkula.css',
+    'highlight-js-css': 'https://cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-light.min.css',
   }
 }
 
