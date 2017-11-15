@@ -37,6 +37,7 @@ const config = {
   paths: {
     'require-js': '//cdn.bootcss.com/require.js/2.3.5/require.min.js',
     'primer-markdown': '//unpkg.com/primer-markdown@3.6.0/build/build.css',
+    // 'github-markdown-css': '//cdn.bootcss.com/github-markdown-css/2.9.0/github-markdown.min.css',
     'highlight-js-css': '//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-light.min.css',
   }
 }
