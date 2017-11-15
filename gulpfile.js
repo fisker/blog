@@ -204,6 +204,13 @@ gulp.task('build:html', function() {
     .pipe(size({title: 'app.html'}))
 })
 
+gulp.task('build:ico', function() {
+  return gulp
+    .src('./src/favicon.ico')
+    .pipe(gulp.dest(DIST))
+    .pipe(size({title: 'favicon.ico'}))
+})
+
 gulp.task('serve', function() {
   browserSync.init({
     server: {
@@ -215,10 +222,10 @@ gulp.task('serve', function() {
   })
 })
 
-gulp.task('default', ['dev:js', 'dev:css', 'dev:html', 'serve'], function() {
+gulp.task('default', ['dev:js', 'dev:css', 'dev:html', 'build:ico', 'serve'], function() {
   gulp.watch('./src/**/*.js', ['dev:js'])
   gulp.watch('./src/**/*.html', ['dev:html'])
   gulp.watch('./src/**/*.scss', ['dev:css'])
 })
 
-gulp.task('build', ['build:js', 'build:css', 'build:html'], function() {})
+gulp.task('build', ['build:js', 'build:css', 'build:html', 'build:ico'], function() {})
