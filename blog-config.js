@@ -6,7 +6,7 @@ const DEFAULT_ARTICLE_CACHE_TIME = 1 * 60 * 1000
 
 const config = {
   // github api base
-  api: 'https://api.github.com',
+  api: '//api.github.com',
   // you should split access_token in to pieces
   // otherwise access_token will expired after you commit to github
   // how to get access_token http://www.fiskercheung.com/#/id/6
@@ -28,14 +28,14 @@ const config = {
   pageSize: 30,
   require: {
     paths: {
-      marked: 'https://cdn.bootcss.com/marked/0.3.6/marked.min.js',
-      'highlight-js': 'https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
-      'es6-promise': 'https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
-      localforage: 'https://cdn.bootcss.com/localforage/1.5.0/localforage.min.js',
+      marked: '//cdn.bootcss.com/marked/0.3.6/marked.min.js',
+      'highlight-js': '//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
+      'es6-promise': '//cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
+      localforage: '//cdn.bootcss.com/localforage/1.5.0/localforage.min.js',
     }
   },
   paths: {
-    'require-js': 'https://cdn.bootcss.com/require.js/2.3.5/require.min.js',
+    'require-js': '//cdn.bootcss.com/require.js/2.3.5/require.min.js',
     'primer-markdown': 'https://unpkg.com/primer-markdown@3.6.0/build/build.css',
     'highlight-js-css': 'https://cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-light.min.css',
   }
