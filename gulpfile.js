@@ -1,7 +1,7 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
-const cssnano = require('gulp-cssnano');
+const cssnano = require('gulp-cssnano')
 const sourcemaps = require('gulp-sourcemaps')
 const size = require('gulp-size')
 const babel = require('gulp-babel')
@@ -43,7 +43,7 @@ function templateData() {
     './src/scripts/index.js',
     './src/scripts/article.js',
     './src/scripts/main.js',
-    './build/temp/templates.js',
+    './build/temp/templates.js'
   ].forEach(function(path) {
     let str
     if (path === './build/temp/templates.js' && PRODUCTION) {
@@ -53,6 +53,24 @@ function templateData() {
     }
     files[path] = str
   })
+
+  if (!config.$cdn) {
+    let cdn = []
+    cdn = cdn
+      .concat(Object.values(config.paths))
+      .concat(Object.values(config.require.paths))
+      .map(function(path) {
+        return path
+          .split('/')
+          .slice(0, 3)
+          .join('/')
+      })
+      .reduce(function(acc, cdn) {
+        return acc.includes(cdn) ? acc : acc.concat([cdn])
+      }, [])
+      .sort()
+    config.$cdn = cdn
+  }
 
   if (!config.$js) {
     const jsConfig = Object.assign({}, config)
@@ -67,6 +85,7 @@ function templateData() {
     }
 
     delete jsConfig.paths
+    delete jsConfig.$cdn
 
     config.$js = jsConfig
   }
@@ -95,15 +114,19 @@ gulp.task('dev:css', function() {
   return gulp
     .src('./src/app.scss')
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sass({
-      outputStyle: 'expanded',
-      precision: 10,
-      onError: console.error.bind(console, 'Sass error:')
-    }))
-    .pipe(autoprefixer({
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        precision: 10,
+        onError: console.error.bind(console, 'Sass error:')
+      })
+    )
+    .pipe(
+      autoprefixer({
         browsers: AUTOPREFIXER_BROWSERS,
         cascade: false
-    }))
+      })
+    )
     .pipe(
       sourcemaps.write('./maps/', {
         addComment: true
@@ -119,15 +142,19 @@ gulp.task('build:css', function() {
   return gulp
     .src('./src/app.scss')
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sass({
-      outputStyle: 'expanded',
-      precision: 10,
-      onError: console.error.bind(console, 'Sass error:')
-    }))
-    .pipe(autoprefixer({
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        precision: 10,
+        onError: console.error.bind(console, 'Sass error:')
+      })
+    )
+    .pipe(
+      autoprefixer({
         browsers: AUTOPREFIXER_BROWSERS,
         cascade: false
-    }))
+      })
+    )
     .pipe(cssnano())
     .pipe(
       sourcemaps.write('./maps/', {
@@ -161,28 +188,28 @@ gulp.task('dev:js', function() {
 })
 
 gulp.task('build:js', function() {
-  return (gulp
-      .src('./src/app.js')
-      .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(template(templateData()))
-      .pipe(
-        babel({
-          presets: ['env']
-        }).on('error', console.log)
-      )
-      .pipe(
-        babel({
-          presets: ['minify']
-        }).on('error', console.log)
-      )
-      .pipe(
-        sourcemaps.write('./maps/', {
-          addComment: false
-        })
-      )
-      .pipe(header(banner.min, {pkg: pkg}))
-      .pipe(gulp.dest(DIST))
-      .pipe(size({title: 'app.js'})) )
+  return gulp
+    .src('./src/app.js')
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(template(templateData()))
+    .pipe(
+      babel({
+        presets: ['env']
+      }).on('error', console.log)
+    )
+    .pipe(
+      babel({
+        presets: ['minify']
+      }).on('error', console.log)
+    )
+    .pipe(
+      sourcemaps.write('./maps/', {
+        addComment: false
+      })
+    )
+    .pipe(header(banner.min, {pkg: pkg}))
+    .pipe(gulp.dest(DIST))
+    .pipe(size({title: 'app.js'}))
 })
 
 gulp.task('dev:html', function() {
@@ -222,10 +249,18 @@ gulp.task('serve', function() {
   })
 })
 
-gulp.task('default', ['dev:js', 'dev:css', 'dev:html', 'build:asset', 'serve'], function() {
-  gulp.watch('./src/**/*.js', ['dev:js'])
-  gulp.watch('./src/**/*.html', ['dev:html'])
-  gulp.watch('./src/**/*.scss', ['dev:css'])
-})
+gulp.task(
+  'default',
+  ['dev:js', 'dev:css', 'dev:html', 'build:asset', 'serve'],
+  function() {
+    gulp.watch('./src/**/*.js', ['dev:js'])
+    gulp.watch('./src/**/*.html', ['dev:html'])
+    gulp.watch('./src/**/*.scss', ['dev:css'])
+  }
+)
 
-gulp.task('build', ['build:js', 'build:css', 'build:html', 'build:asset'], function() {})
+gulp.task(
+  'build',
+  ['build:js', 'build:css', 'build:html', 'build:asset'],
+  function() {}
+)
