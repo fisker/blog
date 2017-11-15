@@ -1,0 +1,15 @@
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+
+/
+  content-type: text/html; charset=utf-8
+
+/favicon.ico
+  content-type: image/vnd.microsoft.icon
+
+/app.css
+  content-type: text/css; charset=utf-8
+
+/app.js
+  content-type: application/javascript; charset=utf-8
