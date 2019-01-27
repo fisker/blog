@@ -1,7 +1,7 @@
-{
+module.exports = {
   "presets": [
     [
-      "env",
+      "@babel/env",
       {
         "targets": {
           "ie": "8",

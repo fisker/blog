@@ -1,7 +1,7 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
-const cssnano = require('gulp-cssnano')
+const cleanCSS = require('gulp-clean-css')
 const sourcemaps = require('gulp-sourcemaps')
 const size = require('gulp-size')
 const babel = require('gulp-babel')
@@ -13,6 +13,7 @@ const DIST = 'dist/'
 const template = require('gulp-template')
 const pkg = require('./package.json')
 const config = require('./blog-config.js')
+const babelConfig = require('./.babelrc.js')
 
 const banner = {
   full: [
@@ -155,7 +156,7 @@ gulp.task('build:css', function() {
         cascade: false
       })
     )
-    .pipe(cssnano())
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(
       sourcemaps.write('./maps/', {
         addComment: false
@@ -172,9 +173,7 @@ gulp.task('dev:js', function() {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(template(templateData()))
     .pipe(
-      babel({
-        presets: ['env']
-      }).on('error', console.log)
+      babel(babelConfig).on('error', console.log)
     )
     .pipe(
       sourcemaps.write('./maps/', {
@@ -193,9 +192,7 @@ gulp.task('build:js', function() {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(template(templateData()))
     .pipe(
-      babel({
-        presets: ['env']
-      }).on('error', console.log)
+      babel(babelConfig).on('error', console.log)
     )
     .pipe(
       babel({
@@ -233,7 +230,7 @@ gulp.task('build:html', function() {
 
 gulp.task('build:asset', function() {
   return gulp
-    .src('./src/{*.ico}')
+    .src('./src/*.ico')
     .pipe(gulp.dest(DIST))
     .pipe(size({title: 'asset'}))
 })
@@ -251,16 +248,14 @@ gulp.task('serve', function() {
 
 gulp.task(
   'default',
-  ['dev:js', 'dev:css', 'dev:html', 'build:asset', 'serve'],
-  function() {
+  gulp.series('dev:js', 'dev:css', 'dev:html', 'build:asset', 'serve', function() {
     gulp.watch('./src/**/*.js', ['dev:js'])
     gulp.watch('./src/**/*.html', ['dev:html'])
     gulp.watch('./src/**/*.scss', ['dev:css'])
-  }
+  })
 )
 
 gulp.task(
   'build',
-  ['build:js', 'build:css', 'build:html', 'build:asset'],
-  function() {}
+  gulp.series('build:js', 'build:css', 'build:html', 'build:asset')
 )
