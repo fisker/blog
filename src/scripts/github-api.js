@@ -1,8 +1,9 @@
+/* global config: true, _: true */
 const github = (function() {
   const head = document.head || document.getElementsByTagName('head')[0]
   const ANONYMOUS_TOKEN_LIMIT = 60
   const ASSUME_TOKEN_LIMIT = 5000
-  let timeDiff = 0
+  const timeDiff = 0
   const anonymousToken = newToken('')
   const tokens = _.map(config.accessTokens, function(token) {
     if (_.isArray(token)) {
@@ -26,9 +27,9 @@ const github = (function() {
 
   function newToken(token) {
     return {
-      token: token,
+      token,
       remaining: token ? ASSUME_TOKEN_LIMIT : ANONYMOUS_TOKEN_LIMIT,
-      reset: 0
+      reset: 0,
     }
   }
 
@@ -41,17 +42,17 @@ const github = (function() {
 
   function request(path, params, token) {
     token = token || {}
-    const callbackName = 'jsonp_' + randomId()
+    const callbackName = `jsonp_${randomId()}`
     const script = document.createElement('script')
     params = _.assign({}, params, {
-      callback: callbackName
+      callback: callbackName,
     })
 
     if (token.token) {
       params.access_token = token.token
     }
 
-    script.src = GITHUB_ISSUES_API_BASE + path + '?' + _.search.build(params)
+    script.src = `${GITHUB_ISSUES_API_BASE + path}?${_.search.build(params)}`
     head.appendChild(script)
 
     function gc() {
@@ -64,8 +65,8 @@ const github = (function() {
         resolve(response)
         gc()
       }
-      script.onerror = function(err) {
-        reject(err)
+      script.onerror = function(error) {
+        reject(error)
         gc()
       }
     }).then(function(data) {
@@ -75,14 +76,14 @@ const github = (function() {
 
   function handleResponse(response, token) {
     if (!response || !response.data) {
-      return Promise.reject('no data found.')
+      return Promise.reject(new Error('no data found.'))
     }
 
     if (response.data.message) {
       return Promise.reject(response.data.message)
     }
 
-    const meta = response.meta
+    const {meta} = response
     if (meta) {
       const remaining = meta['X-RateLimit-Remaining']
       const reset = meta['X-RateLimit-Reset']
@@ -121,7 +122,7 @@ const github = (function() {
 
     return token
       ? request(path, params, token)
-      : Promise.reject('no token')
+      : Promise.reject(new Error('no token'))
   }
 
   function get(path, params) {
@@ -131,12 +132,11 @@ const github = (function() {
       return request(path, params, anonymousToken).catch(function() {
         return requestWithToken(path, params)
       })
-    } else {
-      return requestWithToken(path, params)
     }
+    return requestWithToken(path, params)
   }
 
   return {
-    get: get
+    get,
   }
 })()

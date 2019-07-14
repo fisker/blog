@@ -1,3 +1,4 @@
+/* global config: true, _: true, templates: true, github: true, article: true */
 const index = (function() {
   const INDEX_STORAGE_KEY = 'index'
   const expireTime = ((config.cache && config.cache.index) || 0) * 1000
@@ -11,7 +12,7 @@ const index = (function() {
       if (!cached || cached.pageSize !== config.pageSize) {
         return
       }
-      let data = cached.pages[page - 1]
+      const data = cached.pages[page - 1]
       if (!data || !data.time || _.now() - data.time > expireTime) {
         return
       }
@@ -22,8 +23,8 @@ const index = (function() {
   function fetch(page) {
     return github
       .get('', {
-        page: page,
-        per_page: config.pageSize
+        page,
+        per_page: config.pageSize,
       })
       .then(function(data) {
         storage(data, page)
@@ -33,7 +34,7 @@ const index = (function() {
 
   function storage(data, page) {
     article.storage({
-      data: data.data
+      data: data.data,
     })
 
     if (!expireTime) {
@@ -45,24 +46,24 @@ const index = (function() {
         if (!cached || cached.pageSize !== config.pageSize) {
           cached = {
             pages: [],
-            pageSize: config.pageSize
+            pageSize: config.pageSize,
           }
         }
 
         cached.pages[page - 1] = {
           meta: {
             Link: data.meta.Link,
-            ETag: data.meta.ETag
+            ETag: data.meta.ETag,
           },
           time: _.now(),
-          data: []
+          data: [],
         }
 
         cached.pages[page - 1].data = data.data.map(function(item) {
           return {
             created_at: item.created_at,
             title: item.title,
-            number: item.number
+            number: item.number,
           }
         })
 
@@ -89,13 +90,13 @@ const index = (function() {
         return cached(page)
       })
       .then(function(data) {
-        return data ? data : fetch(page)
+        return data || fetch(page)
       })
   }
 
   return {
-    get: get,
-    storage: storage,
-    render: render
+    get,
+    storage,
+    render,
   }
 })()

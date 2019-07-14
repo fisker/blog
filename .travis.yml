@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "lts/*"
+sudo: false
+cache:
+  yarn: true
+before_install:
+  - npm install --global yarn
+install:
+  - yarn
+script:
+  - yarn lint
+  - yarn build
+  - yarn test

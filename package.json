@@ -2,13 +2,26 @@
   "name": "fisker-blog",
   "version": "1.0.0",
   "description": "fisker's blog",
+  "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build-template": "sh ./build/build-template.sh",
+    "build": "run-p build:*",
+    "build:gulp": "set NODE_ENV=production && gulp build",
+    "build:template": "sh ./build/build-template.sh",
     "dev": "npm run build-template && gulp",
-    "build": "set NODE_ENV=production&& npm run build-template && gulp build",
-    "publish": "sh ./build/publish.sh"
+    "dist": "run-p dist:*",
+    "dist:npm": "np --yolo --no-yarn",
+    "format": "run-p format:*",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --write",
+    "format:stylelint": "yarn lint:stylelint --fix",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint \"**/*.{js,mjs,vue}\"",
+    "lint:markdown": "markdownlint \"**/*.md\" --ignore \"**/node_modules/**\"",
+    "lint:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --check",
+    "lint:stylelint": "stylelint \"**/*.{css,scss,less}\"",
+    "release": "sh ./build/publish.sh",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +31,11 @@
     "fisker",
     "blog"
   ],
-  "author": "fisker Cheung",
+  "author": {
+    "name": "fisker Cheung",
+    "email": "lionkay@gmail.com",
+    "url": "https://www.fiskercheung.com/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fisker/blog/issues"
@@ -34,8 +51,17 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
+    "@commitlint/cli": "8.0.0",
+    "@fisker/commitlint-config": "1.1.0",
+    "@fisker/eslint-config": "1.2.5",
+    "@fisker/husky-config": "1.1.0",
+    "@fisker/lint-staged-config": "1.0.4",
+    "@fisker/prettier-config": "1.0.17",
+    "@fisker/stylelint-config": "1.1.5",
     "babel-preset-minify": "^0.5.0",
     "browser-sync": "^2.26.7",
+    "cz-conventional-changelog-emoji": "0.1.0",
+    "eslint": "6.0.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-babel": "^8.0.0",
@@ -47,6 +73,22 @@
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-template": "^5.0.0",
-    "lodash-cli": "^4.17.5"
-  }
+    "husky": "3.0.0",
+    "lint-staged": "9.2.0",
+    "lodash-cli": "^4.17.5",
+    "markdownlint-cli": "0.17.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.18.2",
+    "stylelint": "10.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog-emoji"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "sideEffects": false
 }

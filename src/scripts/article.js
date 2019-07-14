@@ -1,3 +1,4 @@
+/* global _: true, config: true, templates: true, github: true */
 const article = (function() {
   const ARTICLES_STORAGE_KEY = 'articles'
   const expireTime = ((config.cache && config.cache.article) || 0) * 1000
@@ -18,7 +19,7 @@ const article = (function() {
   }
 
   function fetch(id) {
-    return github.get('/' + id).then(function(data) {
+    return github.get(`/${id}`).then(function(data) {
       storage(data)
       return data
     })
@@ -41,8 +42,8 @@ const article = (function() {
               id: item.number,
               time: _.now(),
               meta: {
-                ETag: data.meta && data.meta.ETag
-              }
+                ETag: data.meta && data.meta.ETag,
+              },
             }
           })
         } else {
@@ -51,8 +52,8 @@ const article = (function() {
             id: data.data.number,
             time: _.now(),
             meta: {
-              ETag: data.meta && data.meta.ETag
-            }
+              ETag: data.meta && data.meta.ETag,
+            },
           }
         }
 
@@ -67,14 +68,14 @@ const article = (function() {
   }
 
   function get(id) {
-    id = +id
+    id = Number(id)
 
     return Promise.resolve()
       .then(function() {
         return cached(id)
       })
       .then(function(data) {
-        return data ? data : fetch(id)
+        return data || fetch(id)
       })
       .then(function(data) {
         return _.markdown(data.data.body).then(function(html) {
@@ -85,8 +86,8 @@ const article = (function() {
   }
 
   return {
-    get: get,
-    storage: storage,
-    render: render
+    get,
+    storage,
+    render,
   }
 })()

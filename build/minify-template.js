@@ -1,4 +1,5 @@
 const fs = require('fs')
+
 const source = './src/template/'
 const target = './build/temp/'
 
@@ -9,11 +10,12 @@ try {
 const files = ['index.jst', 'article.jst']
 
 files.forEach(function(file) {
-  console.log('minify jst file: ' + source + file)
-  let str = fs.readFileSync(source + file, 'utf-8')
-  str = str.replace(/>\s*</g, '><')
+  console.log(`minify jst file: ${source}${file}`)
+  let string = fs.readFileSync(source + file, 'utf-8')
+  string = string
+    .replace(/>\s*</g, '><')
     .replace(/>\s+/g, '> ')
     .replace(/\s+</g, ' <')
     .trim()
-  fs.writeFileSync(target + file, str, 'utf-8')
+  fs.writeFileSync(target + file, string, 'utf-8')
 })

@@ -1,12 +1,13 @@
+/* global config: true, _: true, article: true, index: true */
 const app = (function() {
-  var container = document.getElementById('js-app')
+  const container = document.getElementById('js-app')
 
   function showHTML(html) {
     container.innerHTML = html
   }
 
-  function showError(err) {
-    console.trace(err)
+  function showError(error) {
+    console.trace(error)
     container.innerHTML =
       'error occured <button onclick="location.reload()">retry</button>'
   }
@@ -17,10 +18,13 @@ const app = (function() {
   }
 
   function showArticle(id) {
-    return article.get(id).then(function(data){
-      document.title = data.data.title
-      return data
-    }).then(article.render)
+    return article
+      .get(id)
+      .then(function(data) {
+        document.title = data.data.title
+        return data
+      })
+      .then(article.render)
   }
 
   function showLoading() {
@@ -28,14 +32,13 @@ const app = (function() {
   }
 
   function showPage() {
-
     const query = _.hash.parse(window.location.hash)
     showLoading()
     let promise
 
     if (query.id) {
       promise = showArticle(query.id)
-    } else if(query.label) {
+    } else if (query.label) {
       alert('暂时不支持标签')
       window.history.go(-1)
       return
@@ -52,6 +55,6 @@ const app = (function() {
   }
 
   return {
-    run: run
+    run,
   }
 })()

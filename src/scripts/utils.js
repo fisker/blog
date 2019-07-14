@@ -1,89 +1,116 @@
 const _ = (function() {
   const _ = global._ || (global._ = {})
 
-  _.now = Date.now || function() {
-    return + new Date()
-  }
+  _.now =
+    Date.now ||
+    function() {
+      return Number(new Date())
+    }
 
   _.require = require
   _.Promise = Promise
 
   const _toString = Object.prototype.toString
-  _.type = function(obj) {
-    return _toString.call(obj).slice(7, -1)
+  _.type = function(object) {
+    return _toString.call(object).slice(7, -1)
   }
 
   const _slice = Array.prototype.slice
-  _.toArray = Array.from || function(obj) {
-    return _slice.call(obj)
-  }
-
-  _.isArray = Array.isArray || function(obj) {
-    return _.type(obj) === 'Array'
-  }
-
-  _.isArrayLike = function(obj) {
-    return _.isArray(obj) ||
-      (obj && _.type(obj.length) === 'Number' && parseInt(obj.length, 10) === obj.length)
-  }
-
-  const _forEach = Array.prototype.forEach || function(fn) {
-    for (let i = 0; i < this.length; i++) {
-      fn.call(this, this[i], i, this)
+  _.toArray =
+    Array.from ||
+    function(object) {
+      return _slice.call(object)
     }
+
+  _.isArray =
+    Array.isArray ||
+    function(object) {
+      return _.type(object) === 'Array'
+    }
+
+  _.isArrayLike = function(object) {
+    return (
+      _.isArray(object) ||
+      (object &&
+        _.type(object.length) === 'Number' &&
+        parseInt(object.length, 10) === object.length)
+    )
   }
 
-  const _forInEach = function(obj, fn) {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        fn.call(obj, obj[key], key, obj)
+  const _forEach =
+    Array.prototype.forEach ||
+    function(fn) {
+      for (let i = 0; i < this.length; i += 1) {
+        fn.call(this, this[i], i, this)
+      }
+    }
+
+  const hasOwnProperty = function(value, key) {
+    return (
+      typeof value !== 'undefined' &&
+      value !== null &&
+      Object.prototype.hasOwnProperty.call(value, key)
+    )
+  }
+
+  const _forInEach = function(object, fn) {
+    for (const key in object) {
+      if (hasOwnProperty(object, key)) {
+        fn.call(object, object[key], key, object)
       }
     }
   }
 
   _.forIn = _forInEach
 
-  _.forEach = function(obj, fn) {
-    (_.isArrayLike(obj) ? _forEach : _forInEach).call(obj, fn)
+  _.forEach = function(object, fn) {
+    ;(_.isArrayLike(object) ? _forEach : _forInEach).call(object, fn)
   }
 
-  const _map = Array.prototype.map || function(fn) {
-    const arr = []
-    for (let i = 0; i < this.length; i++) {
-      arr[i] = fn.call(this, this[i], i, this)
-    }
-
-    return arr
-  }
-
-  _.map = function(obj, fn) {
-    return _map.call(obj, fn)
-  }
-
-  const _filter = Array.prototype.filter || function(fn) {
-    const filted = []
-    for (let i = 0; i < this.length; i++) {
-      let result = fn.call(this, this[i], i, this)
-      if (result) {
-        filted.push(this[i])
+  const _map =
+    Array.prototype.map ||
+    function(fn) {
+      const array = []
+      for (let i = 0; i < this.length; i += 1) {
+        array[i] = fn.call(this, this[i], i, this)
       }
+
+      return array
     }
-    return filted
+
+  _.map = function(object, fn) {
+    return _map.call(object, fn)
   }
 
-  _.filter = function(obj, fn) {
-    return _filter.call(obj, fn)
+  const _filter =
+    Array.prototype.filter ||
+    function(fn) {
+      const filted = []
+      for (let i = 0; i < this.length; i += 1) {
+        const result = fn.call(this, this[i], i, this)
+        if (result) {
+          filted.push(this[i])
+        }
+      }
+      return filted
+    }
+
+  _.filter = function(object, fn) {
+    return _filter.call(object, fn)
   }
 
-  _.assign = Object.assign || function(target) {
-    _.forEach(_slice.call(arguments, 1), function(source) {
-      _.forEach(source, function(value, key) {
-        target[key] = value
+  _.assign =
+    Object.assign ||
+    function(target) {
+      // eslint-disable-next-line prefer-rest-params
+      _.forEach(_slice.call(arguments, 1), function(source) {
+        _.forEach(source, function(value, key) {
+          target[key] = value
+        })
       })
-    })
 
-    return target
-  }
+      return target
+    }
 
   _.hash = (function() {
     function parseHash(hash) {
@@ -103,15 +130,15 @@ const _ = (function() {
     function hashLink(data) {
       const hash = []
       _forInEach(data, function(value, key) {
-        hash.push(encodeURIComponent(key) + '/' + encodeURIComponent(value))
+        hash.push(`${encodeURIComponent(key)}/${encodeURIComponent(value)}`)
       })
 
-      return '#/' + hash.sort().join('/')
+      return `#/${hash.sort().join('/')}`
     }
 
     return {
       parse: parseHash,
-      build: hashLink
+      build: hashLink,
     }
   })()
 
@@ -119,14 +146,14 @@ const _ = (function() {
     function buildQuery(data) {
       const search = []
       _forInEach(data, function(value, key) {
-        search.push(encodeURIComponent(key) + '=' + encodeURIComponent(value))
+        search.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
       })
 
       return search.join('&')
     }
 
     return {
-      build: buildQuery
+      build: buildQuery,
     }
   })()
 
@@ -157,38 +184,40 @@ const _ = (function() {
   _.localforage = (function() {
     function setItem(key, value) {
       return require('localforage').then(function(localforage) {
-        return localforage.setItem.call(localforage, key, value)
+        return localforage.setItem(key, value)
       })
     }
 
     function getItem(key) {
       return require('localforage').then(function(localforage) {
-        return localforage.getItem.call(localforage, key)
+        return localforage.getItem(key)
       })
     }
 
     return {
-      setItem: setItem,
-      getItem: getItem
+      setItem,
+      getItem,
     }
   })()
 
   _.markdown = function(code, options) {
-    return Promise.all([require('marked'), require('highlight-js')]).then(function(mods) {
-      const marked = mods[0]
-      const highlight = mods[1]
-      marked.setOptions({
-        highlight: function(code, lang) {
-          if (lang && highlight.getLanguage(lang)) {
-            return highlight.highlight(lang, code).value
-          } else {
+    // eslint-disable-next-line import/no-unresolved
+    return Promise.all([require('marked'), require('highlight-js')]).then(
+      function(mods) {
+        const marked = mods[0]
+        const highlight = mods[1]
+        marked.setOptions({
+          highlight(code, lang) {
+            if (lang && highlight.getLanguage(lang)) {
+              return highlight.highlight(lang, code).value
+            }
             return highlight.highlightAuto(code).value
-          }
-        }
-      })
+          },
+        })
 
-      return marked(code, options)
-    })
+        return marked(code, options)
+      }
+    )
   }
 
   const escapeHtmlChar = {
@@ -197,11 +226,11 @@ const _ = (function() {
     '>': '&gt;',
     '"': '&quot;',
     "'": '&#39;',
-    '`': '&#96;'
+    '`': '&#96;',
   }
   const reUnescapedHtml = /[&<>"'`]/g
   _.escape = function(s) {
-    return (s + '').replace(reUnescapedHtml, function(c) {
+    return `${s}`.replace(reUnescapedHtml, function(c) {
       return escapeHtmlChar[c]
     })
   }
