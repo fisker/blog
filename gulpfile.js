@@ -99,18 +99,6 @@ function templateData() {
   }
 }
 
-const AUTOPREFIXER_BROWSERS = [
-  'ie >= 6',
-  'ie_mob >= 1',
-  'ff >= 1',
-  'chrome >= 1',
-  'safari >= 1',
-  'opera >= 1',
-  'ios >= 1',
-  'android >= 1',
-  'bb >= 1'
-]
-
 gulp.task('dev:css', function() {
   return gulp
     .src('./src/app.scss')
@@ -124,7 +112,6 @@ gulp.task('dev:css', function() {
     )
     .pipe(
       autoprefixer({
-        browsers: AUTOPREFIXER_BROWSERS,
         cascade: false
       })
     )
@@ -152,7 +139,6 @@ gulp.task('build:css', function() {
     )
     .pipe(
       autoprefixer({
-        browsers: AUTOPREFIXER_BROWSERS,
         cascade: false
       })
     )

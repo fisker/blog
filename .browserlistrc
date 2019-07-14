@@ -1,0 +1,9 @@
+ie >= 6
+ie_mob >= 1
+ff >= 1
+chrome >= 1
+safari >= 1
+opera >= 1
+ios >= 1
+android >= 1
+bb >= 1
