@@ -28,17 +28,17 @@ const config = {
   pageSize: 30,
   require: {
     paths: {
-      marked: '//cdn.bootcss.com/marked/0.4.0/marked.min.js',
-      'highlight-js': '//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',
+      marked: '//cdn.bootcss.com/marked/0.7.0/marked.min.js',
+      'highlight-js': '//cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js',
       'es6-promise': '//cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js',
-      localforage: '//cdn.bootcss.com/localforage/1.7.1/localforage.min.js',
+      localforage: '//cdn.bootcss.com/localforage/1.7.3/localforage.min.js',
     }
   },
   paths: {
-    'require-js': '//cdn.bootcss.com/require.js/2.3.5/require.min.js',
-    'primer-markdown': '//unpkg.com/primer-markdown@3.7.8/build/build.css',
+    'require-js': '//cdn.bootcss.com/require.js/2.3.6/require.min.js',
+    'primer-markdown': '//unpkg.com/primer-markdown@4.0.0/build/build.css',
     // 'github-markdown-css': '//cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css',
-    'highlight-js-css': '//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-light.min.css',
+    'highlight-js-css': '//cdn.bootcss.com/highlight.js/9.15.8/styles/solarized-light.min.css',
   }
 }
 
