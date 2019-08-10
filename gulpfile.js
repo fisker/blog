@@ -72,7 +72,7 @@ function templateData() {
   }
 
   if (!config.$js) {
-    const jsConfig = Object.assign({}, config)
+    const jsConfig = {...config}
 
     // fix config.require
     const {paths} = jsConfig.require
