@@ -13,7 +13,9 @@ module.exports = {
   parserOptions: {},
   extends: ['@fisker'],
   settings: {},
-  rules: {},
+  rules: {
+    'unicorn/consistent-function-scoping': 'warn',
+  },
   plugins: [],
   globals: {},
   overrides: [],
