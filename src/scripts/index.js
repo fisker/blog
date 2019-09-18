@@ -26,7 +26,7 @@ const index = (function() {
         page,
         per_page: config.pageSize,
         state: 'open',
-        creator: config.owner
+        creator: config.owner,
       })
       .then(function(data) {
         storage(data, page)
