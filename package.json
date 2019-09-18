@@ -57,7 +57,7 @@
     "@fisker/husky-config": "1.1.3",
     "@fisker/lint-staged-config": "1.0.5",
     "@fisker/prettier-config": "1.0.21",
-    "@fisker/stylelint-config": "1.1.13",
+    "@fisker/stylelint-config": "1.1.14",
     "babel-preset-minify": "^0.5.1",
     "browser-sync": "^2.26.7",
     "cz-conventional-changelog-emoji": "0.1.0",
