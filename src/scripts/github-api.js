@@ -40,19 +40,21 @@ const github = (function() {
       .slice(0, 6)
   }
 
-  function request(path, params, token) {
+  function request(path, parameters, token) {
     token = token || {}
     const callbackName = `jsonp_${randomId()}`
     const script = document.createElement('script')
-    params = _.assign({}, params, {
+    parameters = _.assign({}, parameters, {
       callback: callbackName,
     })
 
     if (token.token) {
-      params.access_token = token.token
+      parameters.access_token = token.token
     }
 
-    script.src = `${GITHUB_ISSUES_API_BASE + path}?${_.search.build(params)}`
+    script.src = `${GITHUB_ISSUES_API_BASE + path}?${_.search.build(
+      parameters
+    )}`
     head.appendChild(script)
 
     function gc() {
@@ -117,23 +119,23 @@ const github = (function() {
     })[0]
   }
 
-  function requestWithToken(path, params) {
+  function requestWithToken(path, parameters) {
     const token = getToken()
 
     return token
-      ? request(path, params, token)
+      ? request(path, parameters, token)
       : Promise.reject(new Error('no token'))
   }
 
-  function get(path, params) {
+  function get(path, parameters) {
     resetTokenRemaining(anonymousToken)
 
     if (anonymousToken.remaining) {
-      return request(path, params, anonymousToken).catch(function() {
-        return requestWithToken(path, params)
+      return request(path, parameters, anonymousToken).catch(function() {
+        return requestWithToken(path, parameters)
       })
     }
-    return requestWithToken(path, params)
+    return requestWithToken(path, parameters)
   }
 
   return {

@@ -64,8 +64,10 @@ function templateData() {
           .slice(0, 3)
           .join('/')
       })
-      .reduce(function(acc, cdn) {
-        return acc.includes(cdn) ? acc : acc.concat([cdn])
+      .reduce(function(accumulator, cdn) {
+        return accumulator.includes(cdn)
+          ? accumulator
+          : accumulator.concat([cdn])
       }, [])
       .sort()
     config.$cdn = cdn
