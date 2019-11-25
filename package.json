@@ -61,7 +61,7 @@
     "babel-preset-minify": "0.5.1",
     "browser-sync": "2.26.7",
     "cz-conventional-changelog": "3.0.2",
-    "eslint": "6.7.0",
+    "eslint": "6.7.1",
     "gulp": "4.0.2",
     "gulp-autoprefixer": "7.0.1",
     "gulp-babel": "8.0.0",
