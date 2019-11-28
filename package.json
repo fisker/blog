@@ -56,7 +56,7 @@
     "@fisker/eslint-config": "1.3.6",
     "@fisker/husky-config": "1.1.4",
     "@fisker/lint-staged-config": "1.0.7",
-    "@fisker/prettier-config": "1.0.23",
+    "@fisker/prettier-config": "1.0.24",
     "@fisker/stylelint-config": "1.1.17",
     "babel-preset-minify": "0.5.1",
     "browser-sync": "2.26.7",
