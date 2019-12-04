@@ -24,14 +24,13 @@
   "sideEffects": false,
   "main": "index.js",
   "scripts": {
-    "build": "run-p build:*",
+    "build": "run-s build:template-minify build:template-compile build:gulp",
     "build:gulp": "set NODE_ENV=production && gulp build",
-    "build:template": "sh ./script/build-template.sh",
+    "build:template-compile": "lodash exports=none iife=\"(function(){%output%;return templates})()\" template=\".cache/*.jst\" -o \".cache/templates.js\"",
+    "build:template-minify": "node ./scripts/minify-template.js",
     "clean": "run-p clean:*",
     "clean:dist": "del-cli dist",
     "dev": "npm run build-template && gulp",
-    "dist": "run-p dist:*",
-    "dist:npm": "np --yolo --no-yarn",
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
     "format:markdown": "yarn lint:markdown --fix",
@@ -44,7 +43,7 @@
     "lint:package-json": "yarn run format:package-json --check",
     "lint:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --check",
     "lint:stylelint": "stylelint \"**/*.{css,scss,less}\"",
-    "release": "sh ./script/publish.sh",
+    "release": "sh ./scripts/publish.sh",
     "test": "echo \"Error: no test specified\""
   },
   "config": {
