@@ -1,4 +1,0 @@
-<h1><%- config.name %></h1><hr><ul class="list"><% data.forEach(function(article) { %><li class="list__item"><a class="list__title" href="<%- _.hash.build({id: article.number}) %>"><%- article.title %></a><div class="list__meta"> #<%- article.number %> posted at <time class="list__time" datetime="<%- article.created_at %>"><%- article.created_at %></time></div></li><% }) %></ul><% if (meta.Link) { %><hr><nav class="pagination"><%
-      meta.Link.forEach(function(link) {
-      var pageIndex = link[0].match(/[?&]page=(\d+)/)[1]
-    %><a href="<%- _.hash.build({page: pageIndex}) %>" title="<%- link[1].rel %>"><%- link[1].rel %></a><% }) %></nav><% } %>
