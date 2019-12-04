@@ -42,11 +42,11 @@ function templateData() {
     './src/scripts/index.js',
     './src/scripts/article.js',
     './src/scripts/main.js',
-    './build/temp/templates.js',
+    '.cache/templates.js',
   ].forEach(function(path) {
     let string
-    if (path === './build/temp/templates.js' && PRODUCTION) {
-      string = fs.readFileSync('./build/temp/templates.min.js', 'utf-8')
+    if (path === '.cache/templates.js' && PRODUCTION) {
+      string = fs.readFileSync('.cache/templates.min.js', 'utf-8')
     } else {
       string = fs.readFileSync(path, 'utf-8')
     }

@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const source = './src/template/'
-const target = './build/temp/'
+const target = '.cache/'
 
 try {
   fs.mkdirSync(target)
