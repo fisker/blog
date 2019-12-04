@@ -1,3 +1,4 @@
+npm run clean
 npm run build
 mkdir ./docs/
 cp ./dist/index.html ./docs/
