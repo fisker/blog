@@ -30,6 +30,7 @@
     "build:template-minify": "node ./scripts/minify-template.js",
     "clean": "run-p clean:*",
     "clean:dist": "del-cli dist",
+    "clean:docs": "del-cli docs",
     "dev": "npm run build-template && gulp",
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
