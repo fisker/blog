@@ -157,7 +157,7 @@ gulp.task('build:css', function() {
 gulp.task('dev:js', function() {
   return gulp
     .src('./src/app.js.jst')
-    .pipe(rename(() => 'app.js'))
+    .pipe(rename('app.js'))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(template(templateData()))
     .pipe(babel(babelConfig).on('error', console.log))
@@ -175,7 +175,7 @@ gulp.task('dev:js', function() {
 gulp.task('build:js', function() {
   return gulp
     .src('./src/app.js.jst')
-    .pipe(rename(() => 'app.js'))
+    .pipe(rename('app.js'))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(template(templateData()))
     .pipe(babel(babelConfig).on('error', console.log))
@@ -197,7 +197,7 @@ gulp.task('build:js', function() {
 gulp.task('dev:html', function() {
   return gulp
     .src('./src/app.html')
-    .pipe(rename(() => 'index.html'))
+    .pipe(rename('index.html'))
     .pipe(template(templateData()))
     .pipe(gulp.dest(DIST))
     .pipe(size({title: 'app.html'}))
@@ -207,7 +207,7 @@ gulp.task('dev:html', function() {
 gulp.task('build:html', function() {
   return gulp
     .src('./src/app.html')
-    .pipe(rename(() => 'index.html'))
+    .pipe(rename('index.html'))
     .pipe(template(templateData()))
     .pipe(gulp.dest(DIST))
     .pipe(size({title: 'app.html'}))
