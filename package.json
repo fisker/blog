@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "es6-promise": "4.2.8",
-    "highlight.js": "9.18.0",
+    "highlight.js": "9.18.1",
     "localforage": "1.7.3",
     "marked": "0.8.0",
     "primer-markdown": "4.0.0"
