@@ -1,11 +1,11 @@
 /* global config: true, _: true */
-const github = (function() {
+const github = (function () {
   const head = document.head || document.getElementsByTagName('head')[0]
   const ANONYMOUS_TOKEN_LIMIT = 60
   const ASSUME_TOKEN_LIMIT = 5000
   const timeDiff = 0
   const anonymousToken = newToken('')
-  const tokens = _.map(config.accessTokens, function(token) {
+  const tokens = _.map(config.accessTokens, function (token) {
     if (_.isArray(token)) {
       token = token.join('')
     }
@@ -13,7 +13,7 @@ const github = (function() {
     return newToken(token)
   })
 
-  const GITHUB_ISSUES_API_BASE = (function() {
+  const GITHUB_ISSUES_API_BASE = (function () {
     let url = [config.api]
     if (config.repoId) {
       url = url.concat(['repositories', config.repoId])
@@ -34,10 +34,7 @@ const github = (function() {
   }
 
   function randomId() {
-    return (Math.random() * _.now())
-      .toString(16)
-      .replace('.', '')
-      .slice(0, 6)
+    return (Math.random() * _.now()).toString(16).replace('.', '').slice(0, 6)
   }
 
   function request(path, parameters, token) {
@@ -62,16 +59,16 @@ const github = (function() {
       window[callbackName] = null
     }
 
-    return new Promise(function(resolve, reject) {
-      window[callbackName] = function(response) {
+    return new Promise(function (resolve, reject) {
+      window[callbackName] = function (response) {
         resolve(response)
         gc()
       }
-      script.onerror = function(error) {
+      script.onerror = function (error) {
         reject(error)
         gc()
       }
-    }).then(function(data) {
+    }).then(function (data) {
       return handleResponse(data, token)
     })
   }
@@ -114,7 +111,7 @@ const github = (function() {
 
   function getToken() {
     _.forEach(tokens, resetTokenRemaining)
-    return _.filter(tokens, function(token) {
+    return _.filter(tokens, function (token) {
       return token.remaining
     })[0]
   }
@@ -131,7 +128,7 @@ const github = (function() {
     resetTokenRemaining(anonymousToken)
 
     if (anonymousToken.remaining) {
-      return request(path, parameters, anonymousToken).catch(function() {
+      return request(path, parameters, anonymousToken).catch(function () {
         return requestWithToken(path, parameters)
       })
     }

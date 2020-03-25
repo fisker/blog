@@ -9,7 +9,7 @@ try {
 
 const files = ['index.jst', 'article.jst']
 
-files.forEach(function(file) {
+files.forEach(function (file) {
   console.log(`minify jst file: ${source}${file}`)
   let string = fs.readFileSync(source + file, 'utf-8')
   string = string

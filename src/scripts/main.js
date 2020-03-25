@@ -1,5 +1,5 @@
 /* global config: true, _: true, article: true, index: true */
-const app = (function() {
+const app = (function () {
   const container = document.getElementById('js-app')
 
   function showHTML(html) {
@@ -20,7 +20,7 @@ const app = (function() {
   function showArticle(id) {
     return article
       .get(id)
-      .then(function(data) {
+      .then(function (data) {
         document.title = data.data.title
         return data
       })

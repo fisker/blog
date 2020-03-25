@@ -43,7 +43,7 @@ function templateData() {
     './src/scripts/article.js',
     './src/scripts/main.js',
     '.cache/templates.js',
-  ].forEach(function(path) {
+  ].forEach(function (path) {
     let string
     if (path === '.cache/templates.js' && PRODUCTION) {
       string = fs.readFileSync('.cache/templates.min.js', 'utf-8')
@@ -58,13 +58,10 @@ function templateData() {
     cdn = cdn
       .concat(Object.values(config.paths))
       .concat(Object.values(config.require.paths))
-      .map(function(path) {
-        return path
-          .split('/')
-          .slice(0, 3)
-          .join('/')
+      .map(function (path) {
+        return path.split('/').slice(0, 3).join('/')
       })
-      .reduce(function(accumulator, cdn) {
+      .reduce(function (accumulator, cdn) {
         return accumulator.includes(cdn)
           ? accumulator
           : accumulator.concat([cdn])
@@ -100,7 +97,7 @@ function templateData() {
   }
 }
 
-gulp.task('dev:css', function() {
+gulp.task('dev:css', function () {
   return gulp
     .src('./src/app.scss')
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -127,7 +124,7 @@ gulp.task('dev:css', function() {
     .pipe(browserSync.stream())
 })
 
-gulp.task('build:css', function() {
+gulp.task('build:css', function () {
   return gulp
     .src('./src/app.scss')
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -154,7 +151,7 @@ gulp.task('build:css', function() {
     .pipe(size({title: 'app.scss'}))
 })
 
-gulp.task('dev:js', function() {
+gulp.task('dev:js', function () {
   return gulp
     .src('./src/app.js.jst')
     .pipe(rename('app.js'))
@@ -172,7 +169,7 @@ gulp.task('dev:js', function() {
     .pipe(browserSync.stream())
 })
 
-gulp.task('build:js', function() {
+gulp.task('build:js', function () {
   return gulp
     .src('./src/app.js.jst')
     .pipe(rename('app.js'))
@@ -194,7 +191,7 @@ gulp.task('build:js', function() {
     .pipe(size({title: 'app.js'}))
 })
 
-gulp.task('dev:html', function() {
+gulp.task('dev:html', function () {
   return gulp
     .src('./src/app.html')
     .pipe(rename('index.html'))
@@ -204,7 +201,7 @@ gulp.task('dev:html', function() {
     .pipe(browserSync.stream())
 })
 
-gulp.task('build:html', function() {
+gulp.task('build:html', function () {
   return gulp
     .src('./src/app.html')
     .pipe(rename('index.html'))
@@ -213,14 +210,14 @@ gulp.task('build:html', function() {
     .pipe(size({title: 'app.html'}))
 })
 
-gulp.task('build:asset', function() {
+gulp.task('build:asset', function () {
   return gulp
     .src('./src/*.ico')
     .pipe(gulp.dest(DIST))
     .pipe(size({title: 'asset'}))
 })
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   browserSync.init({
     server: {
       baseDir: DIST,
@@ -239,7 +236,7 @@ gulp.task(
     'dev:html',
     'build:asset',
     'serve',
-    function() {
+    function () {
       gulp.watch('./src/**/*.js', ['dev:js'])
       gulp.watch('./src/**/*.html', ['dev:html'])
       gulp.watch('./src/**/*.scss', ['dev:css'])

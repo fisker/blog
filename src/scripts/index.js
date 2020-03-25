@@ -1,5 +1,5 @@
 /* global config: true, _: true, templates: true, github: true, article: true */
-const index = (function() {
+const index = (function () {
   const INDEX_STORAGE_KEY = 'index'
   const expireTime = ((config.cache && config.cache.index) || 0) * 1000
   const render = templates.index
@@ -8,7 +8,7 @@ const index = (function() {
     if (!expireTime) {
       return
     }
-    return _.localforage.getItem(INDEX_STORAGE_KEY).then(function(cached) {
+    return _.localforage.getItem(INDEX_STORAGE_KEY).then(function (cached) {
       if (!cached || cached.pageSize !== config.pageSize) {
         return
       }
@@ -28,7 +28,7 @@ const index = (function() {
         state: 'open',
         creator: config.owner,
       })
-      .then(function(data) {
+      .then(function (data) {
         storage(data, page)
         return data
       })
@@ -44,7 +44,7 @@ const index = (function() {
     }
     return _.localforage
       .getItem(INDEX_STORAGE_KEY)
-      .then(function(cached) {
+      .then(function (cached) {
         if (!cached || cached.pageSize !== config.pageSize) {
           cached = {
             pages: [],
@@ -61,7 +61,7 @@ const index = (function() {
           data: [],
         }
 
-        cached.pages[page - 1].data = data.data.map(function(item) {
+        cached.pages[page - 1].data = data.data.map(function (item) {
           return {
             created_at: item.created_at,
             title: item.title,
@@ -73,10 +73,10 @@ const index = (function() {
 
         return cached
       })
-      .then(function(cached) {
+      .then(function (cached) {
         return _.localforage.setItem(INDEX_STORAGE_KEY, cached)
       })
-      .then(function() {
+      .then(function () {
         return data
       })
   }
@@ -88,10 +88,10 @@ const index = (function() {
     }
 
     return Promise.resolve()
-      .then(function() {
+      .then(function () {
         return cached(page)
       })
-      .then(function(data) {
+      .then(function (data) {
         return data || fetch(page)
       })
   }
