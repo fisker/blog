@@ -88,11 +88,11 @@ const github = (function () {
       const reset = meta['X-RateLimit-Reset']
 
       if (remaining) {
-        token.remaining = parseInt(remaining, 10)
+        token.remaining = Number.parseInt(remaining, 10)
       }
 
       if (reset) {
-        token.reset = parseInt(remaining, 10) * 1000
+        token.reset = Number.parseInt(remaining, 10) * 1000
       }
     }
 
