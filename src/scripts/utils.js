@@ -33,7 +33,7 @@ const _ = (function () {
       _.isArray(object) ||
       (object &&
         _.type(object.length) === 'Number' &&
-        Number.parseInt(object.length, 10) === object.length)
+        parseInt(object.length, 10) === object.length)
     )
   }
 

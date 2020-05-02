@@ -82,7 +82,7 @@ const index = (function () {
   }
 
   function get(page) {
-    page = Number.parseInt(page, 10) || 1
+    page = parseInt(page, 10) || 1
     if (page < 1) {
       page = 1
     }

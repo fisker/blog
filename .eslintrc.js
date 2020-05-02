@@ -13,7 +13,9 @@ module.exports = {
   parserOptions: {},
   extends: ['@fisker'],
   settings: {},
-  rules: {},
+  rules: {
+    'unicorn/prefer-number-properties': 'off',
+  },
   plugins: [],
   globals: {},
   overrides: [],
