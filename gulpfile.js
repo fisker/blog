@@ -30,7 +30,7 @@ const banner = {
   ].join('\n'),
   min:
     `/* <%= pkg.name %> v<%= pkg.version %> | (c) ${new Date().getFullYear()} <%= pkg.author.name || pkg.author %> | <%= pkg.license %> License */` +
-    `\n`,
+    '\n',
 }
 
 function templateData() {
