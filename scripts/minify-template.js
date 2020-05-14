@@ -5,7 +5,7 @@ const target = '.cache/'
 
 try {
   fs.mkdirSync(target)
-} catch (_) {}
+} catch {}
 
 const files = ['index.jst', 'article.jst']
 
