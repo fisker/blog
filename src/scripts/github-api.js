@@ -111,9 +111,9 @@ const github = (function () {
 
   function getToken() {
     _.forEach(tokens, resetTokenRemaining)
-    return _.filter(tokens, function (token) {
+    return _.find(tokens, function (token) {
       return token.remaining
-    })[0]
+    })
   }
 
   function requestWithToken(path, parameters) {
