@@ -85,7 +85,7 @@
     "gulp-size": "3.0.0",
     "gulp-sourcemaps": "3.0.0",
     "gulp-template": "5.0.0",
-    "husky": "4.3.0",
+    "husky": "4.3.4",
     "lint-staged": "10.5.3",
     "lodash-cli": "4.17.5",
     "markdownlint-cli": "0.25.0",
