@@ -73,7 +73,7 @@
     "browser-sync": "2.26.13",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "3.0.1",
-    "eslint": "7.14.0",
+    "eslint": "7.15.0",
     "gulp": "4.0.2",
     "gulp-autoprefixer": "7.0.1",
     "gulp-babel": "8.0.0",
