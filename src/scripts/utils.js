@@ -4,6 +4,7 @@ const _ = (function () {
   _.now =
     Date.now ||
     function () {
+      // eslint-disable-next-line unicorn/prefer-date-now
       return Number(new Date())
     }
 
@@ -39,9 +40,9 @@ const _ = (function () {
 
   const _forEach =
     Array.prototype.forEach ||
-    function (fn) {
-      for (let i = 0; i < this.length; i += 1) {
-        fn.call(this, this[i], i, this)
+    function (function_) {
+      for (let index = 0; index < this.length; index += 1) {
+        function_.call(this, this[index], index, this)
       }
     }
 
@@ -53,50 +54,50 @@ const _ = (function () {
     )
   }
 
-  const _forInEach = function (object, fn) {
+  const _forInEach = function (object, function_) {
     for (const key in object) {
       if (hasOwnProperty(object, key)) {
-        fn.call(object, object[key], key, object)
+        function_.call(object, object[key], key, object)
       }
     }
   }
 
   _.forIn = _forInEach
 
-  _.forEach = function (object, fn) {
-    ;(_.isArrayLike(object) ? _forEach : _forInEach).call(object, fn)
+  _.forEach = function (object, function_) {
+    ;(_.isArrayLike(object) ? _forEach : _forInEach).call(object, function_)
   }
 
   const _map =
     Array.prototype.map ||
-    function (fn) {
+    function (function_) {
       const array = []
-      for (let i = 0; i < this.length; i += 1) {
-        array[i] = fn.call(this, this[i], i, this)
+      for (let index = 0; index < this.length; index += 1) {
+        array[index] = function_.call(this, this[index], index, this)
       }
 
       return array
     }
 
-  _.map = function (object, fn) {
-    return _map.call(object, fn)
+  _.map = function (object, function_) {
+    return _map.call(object, function_)
   }
 
   const _filter =
     Array.prototype.filter ||
-    function (fn) {
+    function (function_) {
       const filted = []
-      for (let i = 0; i < this.length; i += 1) {
-        const result = fn.call(this, this[i], i, this)
+      for (let index = 0; index < this.length; index += 1) {
+        const result = function_.call(this, this[index], index, this)
         if (result) {
-          filted.push(this[i])
+          filted.push(this[index])
         }
       }
       return filted
     }
 
-  _.filter = function (object, fn) {
-    return _filter.call(object, fn)
+  _.filter = function (object, function_) {
+    return _filter.call(object, function_)
   }
 
   _.assign =
@@ -118,9 +119,9 @@ const _ = (function () {
       const pieces = hash ? hash.split('/') : []
       const data = {}
 
-      for (let i = 0; i < pieces.length; i += 2) {
-        data[decodeURIComponent(pieces[i])] = decodeURIComponent(
-          pieces[i + 1] || ''
+      for (let index = 0; index < pieces.length; index += 2) {
+        data[decodeURIComponent(pieces[index])] = decodeURIComponent(
+          pieces[index + 1] || ''
         )
       }
 

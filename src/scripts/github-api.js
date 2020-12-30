@@ -100,10 +100,8 @@ const github = (function () {
   }
 
   function resetTokenRemaining(token) {
-    if (!token.remaining) {
-      if (_.now() - anonymousToken.rest > 2 * 1000 * 1000) {
-        token.remaining = ASSUME_TOKEN_LIMIT
-      }
+    if (!token.remaining && _.now() - anonymousToken.rest > 2 * 1000 * 1000) {
+      token.remaining = ASSUME_TOKEN_LIMIT
     }
 
     return token
