@@ -9,7 +9,7 @@ try {
 
 const files = ['index.jst', 'article.jst']
 
-files.forEach(function (file) {
+for (const file of files) {
   console.log(`minify jst file: ${source}${file}`)
   let string = fs.readFileSync(source + file, 'utf-8')
   string = string
@@ -18,4 +18,4 @@ files.forEach(function (file) {
     .replace(/\s+</g, ' <')
     .trim()
   fs.writeFileSync(target + file, string, 'utf-8')
-})
+}

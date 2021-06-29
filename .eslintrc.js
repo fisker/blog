@@ -13,10 +13,18 @@ module.exports = {
   parserOptions: {},
   extends: ['@fisker'],
   settings: {},
-  rules: {
-    'unicorn/prefer-number-properties': 'off',
-  },
+  rules: {},
   plugins: [],
   globals: {},
-  overrides: [],
+  overrides: [
+    {
+      files: ['src/**/*'],
+      rules: {
+        'unicorn/no-array-method-this-argument': 'off',
+        'unicorn/no-array-for-each': 'off',
+        'unicorn/prefer-spread': 'off',
+        'unicorn/prefer-number-properties': 'off',
+      },
+    },
+  ],
 }
