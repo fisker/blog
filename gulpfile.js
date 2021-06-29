@@ -35,7 +35,7 @@ const banner = {
 
 function templateData() {
   const files = {}
-  ;[
+  for (const path of [
     './src/scripts/polyfill-promise.js',
     './src/scripts/utils.js',
     './src/scripts/github-api.js',
@@ -43,7 +43,7 @@ function templateData() {
     './src/scripts/article.js',
     './src/scripts/main.js',
     '.cache/templates.js',
-  ].forEach(function (path) {
+  ]) {
     let string
     if (path === '.cache/templates.js' && PRODUCTION) {
       string = fs.readFileSync('.cache/templates.min.js', 'utf-8')
@@ -51,22 +51,19 @@ function templateData() {
       string = fs.readFileSync(path, 'utf-8')
     }
     files[path] = string
-  })
+  }
 
   if (!config.$cdn) {
-    let cdn = []
-    cdn = cdn
-      .concat(Object.values(config.paths))
-      .concat(Object.values(config.require.paths))
-      .map(function (path) {
-        return path.split('/').slice(0, 3).join('/')
-      })
-      .reduce(function (accumulator, cdn) {
-        return accumulator.includes(cdn)
-          ? accumulator
-          : accumulator.concat([cdn])
-      }, [])
-      .sort()
+    const cdn = [
+      ...new Set(
+        [
+          ...Object.values(config.paths),
+          ...Object.values(config.require.paths),
+        ].map(function (path) {
+          return path.split('/').slice(0, 3).join('/')
+        })
+      ),
+    ].sort()
     config.$cdn = cdn
   }
 
