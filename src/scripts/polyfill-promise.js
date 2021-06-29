@@ -1,7 +1,6 @@
 /* global callback: true */
 if (!Promise) {
   require(['es6-promise'], function (module_) {
-    // eslint-disable-next-line no-global-assign
     Promise = module_.Promise
     afterPromised()
   })

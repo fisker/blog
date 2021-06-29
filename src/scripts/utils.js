@@ -4,7 +4,6 @@ const _ = (function () {
   _.now =
     Date.now ||
     function () {
-      // eslint-disable-next-line unicorn/prefer-date-now
       return Number(new Date())
     }
 
@@ -103,7 +102,6 @@ const _ = (function () {
   _.assign =
     Object.assign ||
     function (target) {
-      // eslint-disable-next-line prefer-rest-params
       _.forEach(_slice.call(arguments, 1), function (source) {
         _.forEach(source, function (value, key) {
           target[key] = value
@@ -202,7 +200,6 @@ const _ = (function () {
   })()
 
   _.markdown = function (code, options) {
-    // eslint-disable-next-line import/no-unresolved
     return Promise.all([require('marked'), require('highlight-js')]).then(
       function (mods) {
         const marked = mods[0]
