@@ -1,5 +1,8 @@
+const fs = require('fs')
+const process = require('process')
 const gulp = require('gulp')
-const sass = require('gulp-sass')(require('sass'))
+const dartSass = require('sass')
+const sass = require('gulp-sass')(dartSass)
 const autoprefixer = require('gulp-autoprefixer')
 const cleanCSS = require('gulp-clean-css')
 const sourcemaps = require('gulp-sourcemaps')
@@ -7,15 +10,15 @@ const size = require('gulp-size')
 const babel = require('gulp-babel')
 const rename = require('gulp-rename')
 const header = require('gulp-header')
-const browserSync = require('browser-sync').create()
-const fs = require('fs')
-
-const PRODUCTION = process.env.NODE_ENV === 'production'
-const DIST = 'dist/'
+const browserSyncModule = require('browser-sync')
 const template = require('gulp-template')
 const package_ = require('./package.json')
 const config = require('./blog-config.js')
 const babelConfig = require('./.babelrc.js')
+
+const browserSync = browserSyncModule.create()
+const PRODUCTION = process.env.NODE_ENV === 'production'
+const DIST = 'dist/'
 
 const banner = {
   full: [
