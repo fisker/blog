@@ -50,7 +50,7 @@ const github = (function () {
     }
 
     script.src = `${GITHUB_ISSUES_API_BASE + path}?${_.search.build(
-      parameters
+      parameters,
     )}`
     head.appendChild(script)
 

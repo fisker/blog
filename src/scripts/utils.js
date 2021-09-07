@@ -119,7 +119,7 @@ const _ = (function () {
 
       for (let index = 0; index < pieces.length; index += 2) {
         data[decodeURIComponent(pieces[index])] = decodeURIComponent(
-          pieces[index + 1] || ''
+          pieces[index + 1] || '',
         )
       }
 
@@ -214,7 +214,7 @@ const _ = (function () {
         })
 
         return marked(code, options)
-      }
+      },
     )
   }
 
