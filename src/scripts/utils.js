@@ -228,7 +228,7 @@ const _ = (function () {
   }
   const reUnescapedHtml = /["&'<>`]/g
   _.escape = function (s) {
-    return `${s}`.replace(reUnescapedHtml, function (c) {
+    return String(s).replace(reUnescapedHtml, function (c) {
       return escapeHtmlChar[c]
     })
   }
