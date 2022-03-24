@@ -49,9 +49,9 @@ function templateData() {
   ]) {
     let string
     if (path === '.cache/templates.js' && PRODUCTION) {
-      string = fs.readFileSync('.cache/templates.min.js', 'utf-8')
+      string = fs.readFileSync('.cache/templates.min.js', 'utf8')
     } else {
-      string = fs.readFileSync(path, 'utf-8')
+      string = fs.readFileSync(path, 'utf8')
     }
     files[path] = string
   }
