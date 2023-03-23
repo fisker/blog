@@ -70,7 +70,7 @@
     "@fisker/prettier-config": "5.0.7",
     "@fisker/stylelint-config": "5.0.20",
     "babel-preset-minify": "0.5.2",
-    "browser-sync": "2.29.0",
+    "browser-sync": "2.29.1",
     "cz-conventional-changelog": "3.3.0",
     "del-cli": "5.0.0",
     "eslint": "8.36.0",
