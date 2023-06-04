@@ -93,6 +93,6 @@
     "prettier": "2.8.8",
     "sass": "1.62.1",
     "sort-package-json": "2.4.1",
-    "stylelint": "15.6.2"
+    "stylelint": "15.6.3"
   }
 }
