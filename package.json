@@ -60,7 +60,7 @@
     "primer-markdown": "4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.3",
+    "@babel/core": "7.24.4",
     "@babel/preset-env": "7.24.3",
     "@commitlint/cli": "19.2.1",
     "@fisker/commitlint-config": "2.0.5",
