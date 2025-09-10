@@ -3450,9 +3450,9 @@ __metadata:
   linkType: hard
 
 "ini@npm:^1.3.5":
-  version: 1.3.5
-  resolution: "ini@npm:1.3.5"
-  checksum: 10c0/8ac1bed81d502b6a5ae349a02e052564fa46983e552ee34caca48c23a48d83e89a3b64278204e05003c2762659c81b5f5d351db96815e10e2f2b33a33998c683
+  version: 1.3.8
+  resolution: "ini@npm:1.3.8"
+  checksum: 10c0/ec93838d2328b619532e4f1ff05df7909760b6f66d9c9e2ded11e5c1897d6f2f9980c54dd638f88654b00919ce31e827040631eab0a3969e4d1abefa0719516a
   languageName: node
   linkType: hard
 
